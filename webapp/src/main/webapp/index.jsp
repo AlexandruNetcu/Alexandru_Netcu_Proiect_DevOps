@@ -95,7 +95,7 @@
     </header>
     
     <main>
-      <h2>Welcome to DevOps Project</h2>
+      <h2>Welcome to my DevOps Project</h2>
       <p>To take down one server is human. To take down 10,000 servers is DevOps! </p>
       
       <section>
