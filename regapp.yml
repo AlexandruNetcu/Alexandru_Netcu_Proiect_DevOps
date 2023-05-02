@@ -1,14 +1,18 @@
 ---
 - hosts: ansible
+  # playbook creat pentru grupul ansible
+
   tasks:
   - name: create docker image
     command: docker build -t regapp:latest .
     args:
      chdir: /opt/docker
-
+     #cream imagine numita regapp folosind dockerfile-ul din folderul schimbat cu comanda chdir, "." folosit in command arata ca in folderul respectiv exista un dockerfile care poate fi utilizat
 
   - name: create tag to push image on dockerhub
     command: docker tag regapp:latest netcualexandru/regapp:latest
+    # folosim user-ul nostru pentru a putea urca imaginea pe dockerhub
 
   - name: push docker image
     command: docker push netcualexandru/regapp:latest
+    # dam push imaginii pe dockerhub

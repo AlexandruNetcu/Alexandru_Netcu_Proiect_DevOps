@@ -1,18 +1,23 @@
 ---
 - hosts: dockerhost
+  # functiile acestui playbook se aplica doar pentru grupul dockerhost
 
   tasks:
   - name: stop existing container
     command: docker stop regapp-server
     ignore_errors: yes
+    # folosim aceasta functie pentru a opri containerul in cazul in care exista deja, iar daca nu avem unul creat deja ignoram erorile pentru a putea rula mai departe playbook-ul
 
   - name: remove the container
     command: docker rm regapp-server
     ignore_errors: yes
+    # folosim aceasta functie pentru a sterge containerul in cazul in care exista si este oprit, iar daca nu avem acest container creat ignoram erorile pentru a putea rula mai departe playbook-ul
 
   - name: remove image
     command: docker rmi netcualexandru/regapp:latest
     ignore_errors: yes
+    # stergem imaginea in cazul in care exista, iar daca nu exista ignoram erorile pentru a rula playbook-ul mai departe
 
   - name: create container
     command: docker run -d --name regapp-server -p 8082:8080 netcualexandru/regapp:latest
+    # cream container care va putea fi vizualizat pe portul extern 8082 ce va rula imaginea creata
